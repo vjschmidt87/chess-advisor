@@ -1,0 +1,145 @@
+@use 'variables' as *;
+
+.chess-board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.rank-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+
+  .label {
+    color: $text-secondary;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: calc(100% / 8);
+  }
+}
+
+.board {
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: $radius-sm;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+  position: relative;
+  width: min(560px, 85vw);
+  height: min(560px, 85vw);
+}
+
+.board-row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.square {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+
+  &.light {
+    background-color: $board-light;
+  }
+
+  &.dark {
+    background-color: $board-dark;
+  }
+
+  &.selected {
+    background-color: $board-selected !important;
+  }
+
+  &.last-move {
+    background-color: $board-last-move !important;
+  }
+
+  &.check {
+    background: radial-gradient(ellipse at center, $board-check 0%, rgba(255, 0, 0, 0.3) 40%, transparent 70%) !important;
+  }
+
+  &.recommended {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: $board-recommended;
+      pointer-events: none;
+    }
+  }
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+}
+
+.piece {
+  font-size: min(4rem, 9vw);
+  line-height: 1;
+  cursor: grab;
+  z-index: 1;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.4));
+  transition: transform 0.1s ease;
+
+  &:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+  }
+
+  &.white-piece {
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+  }
+
+  &.black-piece {
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.legal-move-dot {
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background-color: $board-legal-move;
+  pointer-events: none;
+}
+
+.legal-move-ring {
+  position: absolute;
+  inset: 0;
+  border: 4px solid $board-legal-move;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.file-labels {
+  display: flex;
+  justify-content: space-around;
+  width: min(560px, 85vw);
+  margin-top: $spacing-xs;
+
+  .label {
+    color: $text-secondary;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.chess-board-container {
+  position: relative;
+}

@@ -1,0 +1,37 @@
+<div class="chess-board-container">
+  <div class="rank-labels">
+    <span class="label" *ngFor="let rank of getDisplayRanks()">{{ rank }}</span>
+  </div>
+  <div class="board">
+    <div class="board-row" *ngFor="let row of squares; trackBy: trackByRow">
+      <div
+        *ngFor="let square of row; trackBy: trackBySquare"
+        class="square"
+        [class.light]="square.isLight"
+        [class.dark]="!square.isLight"
+        [class.selected]="square.isSelected"
+        [class.legal-move]="square.isLegalMove"
+        [class.last-move]="square.isLastMove"
+        [class.check]="square.isCheck"
+        [class.recommended]="square.isRecommended"
+        (click)="onSquareClick(square)"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, square)"
+      >
+        <div class="legal-move-dot" *ngIf="square.isLegalMove && !square.piece"></div>
+        <div class="legal-move-ring" *ngIf="square.isLegalMove && square.piece"></div>
+        <span
+          *ngIf="square.piece"
+          class="piece"
+          [class.white-piece]="square.piece === square.piece.toUpperCase()"
+          [class.black-piece]="square.piece === square.piece.toLowerCase()"
+          [attr.draggable]="!disabled && !!square.piece"
+          (dragstart)="onDragStart($event, square)"
+        >{{ getPieceUnicode(square.piece) }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="file-labels">
+    <span class="label" *ngFor="let file of getDisplayFiles()">{{ file }}</span>
+  </div>
+</div>

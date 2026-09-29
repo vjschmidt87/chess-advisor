@@ -1,0 +1,14 @@
+<nav class="app-nav">
+  <div class="nav-brand">
+    <span class="nav-logo">&#9818;</span>
+    <span class="nav-title">Chess Advisor</span>
+  </div>
+  <div class="nav-links" *ngIf="isLoggedIn$ | async">
+    <a routerLink="/game" routerLinkActive="active">Play</a>
+    <a routerLink="/history" routerLinkActive="active">History</a>
+    <button class="btn-logout" (click)="logout()">Logout</button>
+  </div>
+</nav>
+<main class="app-content">
+  <router-outlet></router-outlet>
+</main>

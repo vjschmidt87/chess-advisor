@@ -1,0 +1,125 @@
+<!-- New Game Dialog -->
+<div class="overlay" *ngIf="showNewGameDialog">
+  <div class="dialog">
+    <h2>New Game</h2>
+    <p>Choose your color:</p>
+    <div class="color-choice">
+      <button class="btn btn--primary color-btn" (click)="startNewGame('WHITE')">
+        <span class="color-piece">&#9812;</span>
+        <span>Play as White</span>
+      </button>
+      <button class="btn btn--outline color-btn" (click)="startNewGame('BLACK')">
+        <span class="color-piece">&#9818;</span>
+        <span>Play as Black</span>
+      </button>
+    </div>
+    <div class="dialog-divider">or</div>
+    <button class="btn btn--accent btn--sm" (click)="showImportDialog = true; showNewGameDialog = false">
+      Import PGN
+    </button>
+  </div>
+</div>
+
+<!-- Import Dialog -->
+<div class="overlay" *ngIf="showImportDialog">
+  <div class="dialog">
+    <h2>Import Game (PGN)</h2>
+    <div class="form-group">
+      <textarea
+        [(ngModel)]="importPgn"
+        placeholder="Paste PGN here..."
+        rows="8"
+      ></textarea>
+    </div>
+    <div class="dialog-actions">
+      <button class="btn btn--outline btn--sm" (click)="showImportDialog = false; showNewGameDialog = true">
+        Cancel
+      </button>
+      <button class="btn btn--primary btn--sm" (click)="importGame()">
+        Import
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Game Layout -->
+<div class="game-layout" *ngIf="!showNewGameDialog && !showImportDialog">
+  <!-- Toolbar -->
+  <div class="game-toolbar">
+    <div class="toolbar-left">
+      <span class="game-status" [class.check]="isCheck" [class.mate]="isCheckmate || isStalemate">
+        {{ getStatusText() }}
+      </span>
+      <span class="opening-name" *ngIf="openingName">{{ openingName }}</span>
+    </div>
+    <div class="toolbar-right">
+      <button class="btn btn--outline btn--sm" (click)="undoMove()" title="Undo">
+        &#8630; Undo
+      </button>
+      <button class="btn btn--outline btn--sm" (click)="flipBoard()" title="Flip board">
+        &#8693; Flip
+      </button>
+      <button class="btn btn--outline btn--sm" (click)="exportGame()" title="Export PGN" *ngIf="gameId">
+        &#128203; Export
+      </button>
+      <button class="btn btn--danger btn--sm" (click)="resetGame()" title="New game">
+        New Game
+      </button>
+    </div>
+  </div>
+
+  <!-- Error message -->
+  <div class="error-banner" *ngIf="errorMessage">
+    {{ errorMessage }}
+    <button class="dismiss" (click)="errorMessage = ''">&#10005;</button>
+  </div>
+
+  <!-- Game content -->
+  <div class="game-content">
+    <!-- Notation Guide -->
+    <div class="guide-section">
+      <app-notation-guide></app-notation-guide>
+    </div>
+
+    <!-- Evaluation Bar -->
+    <div class="eval-section">
+      <app-evaluation-bar
+        [evaluation]="evaluation"
+        [isFlipped]="isFlipped"
+      ></app-evaluation-bar>
+    </div>
+
+    <!-- Chess Board -->
+    <div class="board-section">
+      <app-chess-board
+        [fen]="currentFen"
+        [isFlipped]="isFlipped"
+        [legalMoves]="legalMoves"
+        [lastMove]="lastMove"
+        [checkSquare]="checkSquare"
+        [recommendedSquares]="recommendedSquares"
+        [disabled]="isCheckmate || isStalemate"
+        [playerColor]="playerColor"
+        (pieceSelected)="onPieceSelected($event)"
+        (pieceDrop)="onPieceDrop($event)"
+      ></app-chess-board>
+    </div>
+
+    <!-- Side Panel -->
+    <div class="side-panel">
+      <!-- Recommended Moves -->
+      <app-recommended-moves
+        [moves]="recommendedMoves"
+        [loading]="isAnalyzing"
+        (moveHover)="onRecommendedMoveHover($event)"
+      ></app-recommended-moves>
+
+      <!-- Move History -->
+      <app-move-history
+        [moves]="moves"
+        [currentMoveIndex]="currentMoveIndex"
+        (moveClick)="onMoveHistoryClick($event)"
+      ></app-move-history>
+    </div>
+  </div>
+</div>

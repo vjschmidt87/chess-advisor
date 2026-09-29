@@ -1,0 +1,57 @@
+@use 'variables' as *;
+
+.eval-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30px;
+  height: 100%;
+  min-height: 400px;
+}
+
+.eval-label {
+  font-size: $font-size-xs;
+  font-weight: 700;
+  padding: $spacing-xs;
+  color: $text-muted;
+
+  &.advantage {
+    color: $accent;
+  }
+}
+
+.eval-track {
+  flex: 1;
+  width: 100%;
+  background: #333;
+  border-radius: $radius-sm;
+  position: relative;
+  overflow: hidden;
+}
+
+.eval-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f5f5f5;
+  transition: height 0.5s ease;
+}
+
+.eval-value {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: $font-mono;
+  color: #333;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  white-space: nowrap;
+
+  &.white-text {
+    color: #333;
+  }
+}

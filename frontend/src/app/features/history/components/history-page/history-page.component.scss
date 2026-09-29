@@ -1,0 +1,102 @@
+@use 'variables' as *;
+
+.history-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-xl $spacing-md;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+
+  h1 {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $text-primary;
+  }
+}
+
+.loading,
+.error,
+.empty {
+  text-align: center;
+  padding: $spacing-2xl $spacing-md;
+  color: $text-secondary;
+}
+
+.error {
+  color: $danger;
+
+  button {
+    margin-top: $spacing-md;
+  }
+}
+
+.empty {
+  .btn {
+    margin-top: $spacing-md;
+  }
+}
+
+.games-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  background: $bg-card;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.game-color {
+  .piece {
+    font-size: $font-size-2xl;
+    line-height: 1;
+    color: $text-primary;
+  }
+}
+
+.game-info {
+  flex: 1;
+}
+
+.game-title {
+  .opening {
+    font-weight: 600;
+    font-size: $font-size-md;
+    color: $text-primary;
+  }
+}
+
+.game-meta {
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.separator {
+  color: $text-muted;
+}
+
+.btn-sm {
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-sm;
+}

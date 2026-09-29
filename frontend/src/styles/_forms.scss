@@ -1,0 +1,29 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.form-group {
+  @include flex-column;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+
+  label {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    font-weight: 500;
+  }
+
+  input, select, textarea {
+    @include input-base;
+  }
+
+  .error-message {
+    color: $danger;
+    font-size: $font-size-xs;
+    margin-top: $spacing-xs;
+  }
+}
+
+.form-actions {
+  @include flex-between;
+  margin-top: $spacing-lg;
+}

@@ -1,0 +1,17 @@
+<div class="eval-bar">
+  <div class="eval-label top" [class.advantage]="!isWhiteAdvantage">
+    {{ isFlipped ? 'W' : 'B' }}
+  </div>
+  <div class="eval-track">
+    <div
+      class="eval-fill white-fill"
+      [style.height.%]="whitePercentage"
+    ></div>
+    <div class="eval-value" [class.white-text]="isWhiteAdvantage">
+      {{ displayEvaluation }}
+    </div>
+  </div>
+  <div class="eval-label bottom" [class.advantage]="isWhiteAdvantage">
+    {{ isFlipped ? 'B' : 'W' }}
+  </div>
+</div>

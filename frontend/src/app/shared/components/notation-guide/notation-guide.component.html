@@ -1,0 +1,148 @@
+<div class="notation-guide" [class.collapsed]="isCollapsed">
+  <div class="guide-header" (click)="toggle()">
+    <h3>Notation Guide</h3>
+    <span class="toggle-icon">{{ isCollapsed ? '&#9654;' : '&#9660;' }}</span>
+  </div>
+
+  @if (!isCollapsed) {
+  <div class="guide-body">
+    <!-- Piece Letters -->
+    <section class="guide-section">
+      <h4>Pieces</h4>
+      <div class="notation-table">
+        <div class="notation-row">
+          <span class="symbol">K</span>
+          <span class="piece-icon">&#9812;</span>
+          <span class="label">King</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">Q</span>
+          <span class="piece-icon">&#9813;</span>
+          <span class="label">Queen</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">R</span>
+          <span class="piece-icon">&#9814;</span>
+          <span class="label">Rook</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">B</span>
+          <span class="piece-icon">&#9815;</span>
+          <span class="label">Bishop</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">N</span>
+          <span class="piece-icon">&#9816;</span>
+          <span class="label">Knight</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol hint">(none)</span>
+          <span class="piece-icon">&#9817;</span>
+          <span class="label">Pawn</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Board Coordinates -->
+    <section class="guide-section">
+      <h4>Squares</h4>
+      <p class="guide-text">
+        Each square is named by its <strong>file</strong> (column, a&ndash;h) and <strong>rank</strong> (row, 1&ndash;8).
+      </p>
+      <div class="example">
+        <span class="notation">e4</span> = column e, row 4
+      </div>
+    </section>
+
+    <!-- Move Notation -->
+    <section class="guide-section">
+      <h4>Moves</h4>
+      <p class="guide-text">
+        Piece letter + destination square. Pawns omit the letter.
+      </p>
+      <div class="examples-list">
+        <div class="example">
+          <span class="notation">Ne6</span>
+          <span class="meaning">Knight to e6</span>
+        </div>
+        <div class="example">
+          <span class="notation">Qd7</span>
+          <span class="meaning">Queen to d7</span>
+        </div>
+        <div class="example">
+          <span class="notation">e4</span>
+          <span class="meaning">Pawn to e4</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Symbols -->
+    <section class="guide-section">
+      <h4>Symbols</h4>
+      <div class="notation-table">
+        <div class="notation-row">
+          <span class="symbol">x</span>
+          <span class="label">Capture</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">+</span>
+          <span class="label">Check</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">#</span>
+          <span class="label">Checkmate</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">O-O</span>
+          <span class="label">Kingside castle</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">O-O-O</span>
+          <span class="label">Queenside castle</span>
+        </div>
+        <div class="notation-row">
+          <span class="symbol">=Q</span>
+          <span class="label">Pawn promotes to Queen</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disambiguation -->
+    <section class="guide-section">
+      <h4>Disambiguation</h4>
+      <p class="guide-text">
+        When two identical pieces can move to the same square, the file, rank, or both are added:
+      </p>
+      <div class="examples-list">
+        <div class="example">
+          <span class="notation">Nge2</span>
+          <span class="meaning">Knight on file g to e2</span>
+        </div>
+        <div class="example">
+          <span class="notation">R1d2</span>
+          <span class="meaning">Rook on rank 1 to d2</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Examples -->
+    <section class="guide-section">
+      <h4>Examples</h4>
+      <div class="examples-list">
+        <div class="example">
+          <span class="notation">Bxf7+</span>
+          <span class="meaning">Bishop captures on f7, check</span>
+        </div>
+        <div class="example">
+          <span class="notation">exd5</span>
+          <span class="meaning">e-pawn captures on d5</span>
+        </div>
+        <div class="example">
+          <span class="notation">e8=Q#</span>
+          <span class="meaning">Pawn to e8, promotes to Queen, checkmate</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  }
+</div>

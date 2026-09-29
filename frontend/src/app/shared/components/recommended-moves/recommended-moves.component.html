@@ -1,0 +1,35 @@
+<div class="recommended-moves">
+  <div class="rec-header">
+    <h3>Recommended Moves</h3>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <span>Analyzing position...</span>
+  </div>
+
+  <div class="moves-list" *ngIf="!loading">
+    <div
+      class="move-card"
+      *ngFor="let move of moves; let i = index; trackBy: trackByMove"
+      (mouseenter)="onMouseEnter(move)"
+      (mouseleave)="onMouseLeave()"
+      (click)="onMoveClick(move)"
+    >
+      <div class="move-rank">
+        <span class="rank-badge" [class]="'rank-' + (i + 1)">{{ getRankLabel(i) }}</span>
+      </div>
+      <div class="move-info">
+        <div class="move-notation">
+          <span class="notation">{{ move.move }}</span>
+          <span class="score" [ngClass]="getScoreClass(move.score)">{{ getScoreDisplay(move.score) }}</span>
+        </div>
+        <p class="move-explanation">{{ move.explanation }}</p>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="moves.length === 0">
+      Make a move to see recommendations
+    </div>
+  </div>
+</div>

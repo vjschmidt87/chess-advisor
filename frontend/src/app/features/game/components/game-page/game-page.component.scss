@@ -1,0 +1,173 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  @include flex-center;
+  z-index: 100;
+}
+
+.dialog {
+  @include card;
+  text-align: center;
+  min-width: 350px;
+  max-width: 450px;
+
+  h2 {
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.color-choice {
+  display: flex;
+  gap: $spacing-lg;
+  justify-content: center;
+  margin-bottom: $spacing-lg;
+}
+
+.color-btn {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-lg $spacing-xl;
+  min-width: 140px;
+}
+
+.color-piece {
+  font-size: 3rem;
+}
+
+.dialog-divider {
+  color: $text-muted;
+  margin: $spacing-md 0;
+  font-style: italic;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: flex-end;
+  margin-top: $spacing-lg;
+}
+
+.game-layout {
+  @include flex-column;
+  height: calc(100vh - 60px);
+  padding: $spacing-md $spacing-lg;
+}
+
+.game-toolbar {
+  @include flex-between;
+  padding: $spacing-sm $spacing-md;
+  background: $bg-card;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.game-status {
+  font-weight: 600;
+  font-size: $font-size-md;
+
+  &.check {
+    color: $warning;
+  }
+
+  &.mate {
+    color: $danger;
+  }
+}
+
+.opening-name {
+  color: $primary-light;
+  font-size: $font-size-sm;
+  font-style: italic;
+}
+
+.toolbar-right {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.error-banner {
+  @include flex-between;
+  background: rgba($danger, 0.15);
+  color: $danger;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-md;
+  font-size: $font-size-sm;
+
+  .dismiss {
+    background: none;
+    border: none;
+    color: $danger;
+    cursor: pointer;
+    font-size: $font-size-md;
+  }
+}
+
+.game-content {
+  display: flex;
+  gap: $spacing-lg;
+  flex: 1;
+  min-height: 0;
+  align-items: flex-start;
+
+  @include respond-to(lg) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.guide-section {
+  flex-shrink: 0;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.eval-section {
+  flex-shrink: 0;
+  height: min(560px, 85vw);
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.board-section {
+  flex-shrink: 0;
+}
+
+.side-panel {
+  flex: 1;
+  min-width: 280px;
+  max-width: 400px;
+  @include flex-column;
+  gap: $spacing-md;
+  max-height: min(560px, 85vw);
+  overflow-y: auto;
+  @include scrollbar;
+
+  @include respond-to(lg) {
+    max-width: min(560px, 85vw);
+    width: 100%;
+    max-height: none;
+  }
+}

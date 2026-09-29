@@ -1,0 +1,66 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.btn {
+  @include flex-center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: $radius-sm;
+  font-family: $font-family;
+  font-size: $font-size-md;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-decoration: none;
+  display: inline-flex;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: $primary;
+    color: white;
+    &:hover:not(:disabled) { background: $primary-light; }
+  }
+
+  &--accent {
+    background: $accent;
+    color: white;
+    &:hover:not(:disabled) { background: $accent-dark; }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 1px solid $primary-light;
+    color: $primary-light;
+    &:hover:not(:disabled) {
+      background: rgba($primary-light, 0.1);
+    }
+  }
+
+  &--danger {
+    background: $danger;
+    color: white;
+    &:hover:not(:disabled) { background: darken($danger, 10%); }
+  }
+
+  &--sm {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-lg;
+  }
+
+  &--icon {
+    padding: $spacing-sm;
+    border-radius: $radius-round;
+    width: 36px;
+    height: 36px;
+  }
+}

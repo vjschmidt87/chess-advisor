@@ -1,0 +1,66 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.auth-container {
+  @include flex-center;
+  min-height: calc(100vh - 60px);
+  padding: $spacing-lg;
+}
+
+.auth-card {
+  @include card;
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+
+  .auth-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: $spacing-sm;
+  }
+
+  h1 {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-xs;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: $font-size-sm;
+  }
+}
+
+.auth-form {
+  @include flex-column;
+  gap: $spacing-md;
+}
+
+.error-message {
+  color: $danger;
+  font-size: $font-size-sm;
+  text-align: center;
+  padding: $spacing-sm;
+  background: rgba($danger, 0.1);
+  border-radius: $radius-sm;
+}
+
+.full-width {
+  width: 100%;
+  justify-content: center;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  p {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+}
